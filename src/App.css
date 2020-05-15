@@ -1,38 +1,296 @@
-.App {
+body {
+  background: #fafafa;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 320px;
+}
+.no-link {
+  text-decoration: none;
+}
+
+/* HEADER */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border: 1px solid rgba(237, 22, 30, 0.1);
+}
+nav {
+  position: relative;
+  background-color: white;
+  padding: 10px 0;
+}
+.header-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 4;
+}
+.header-left > li {
+  margin-right: 30px;
+}
+.header-left img {
+  width: 150px;
+}
+.header-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+nav > ul {
+  display: flex;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.header-link {
+  text-decoration: none;
+  color: black
+}
+.header-link:hover, .logout:hover {
+  color: #ED161E;
+}
+.logout {
+  cursor: pointer;
+}
+.username {
+  text-align: center;
+  font-weight: 700;
+  color: #ED161E;
+  margin-right: 35px;
+}
+.username:hover {
+  color: black;
+}
+
+/* SEARCH */
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 40px auto 70px auto;
+}
+.input-search {
+  height: 44px;
+  width: 320px;
+  margin-right: 20px;
+  padding-left: 35px;
+  border: none;
+  background-color: #f4f6f7;
+  border: 1px solid #ED161E;
+  outline: none;
+}
+.search-icon {
+  font-size: 21px;
+  color: #ED161E;
+  margin-top: 10px;
+}
+
+/* CHARACTERS  /  COMICS */
+
+.star-icon {
+  position: absolute;
+  margin: 10px 0 0 155px;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.star-icon:hover {
+  color: #ED161E;
+  cursor: pointer;
+}
+
+/* CHARACTER CARD  /  COMIC CARD */
+
+.card-c {
+  background: white;
+  margin-bottom: 65px;
+  width: 70%;
+  display: flex;
+  padding: 20px;
+  margin: 0 auto 60px auto;
+  position: relative;
+  box-shadow: 0px 22px 24px 0px rgba(46, 51, 51, 0.07);
+}
+.card-cc { 
+  display: flex;
+}
+.img-card {
+  margin-right: 20px;
+  width: 190px;
+  height: 220px;
+  object-fit: fill;
+}
+.name-description-char, .title-description-com {
+  margin-top: 10px;
+}
+.name-description-char div:first-child, .title-description-com div:first-child {
+  color: #ED161E;
+}
+.name-description-char div:last-child, .title-description-com div:last-child {
+  font-size: 12px;
+  margin-top: 20px;
+  text-justify: justify;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* FAVORITE */
+
+.star-icon-fav {
+  color: #ED161E;
+  position: absolute;
+  margin: 10px 0 0 105px;
+  font-size: 16px;
+}
+.star-icon-fav:hover {
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.fav-container {
+  display: flex;
+  position: relative;
+  margin: 40px 0;
+}
+.fav-char, .fav-com {
+  flex: 1;
+  background: white;
+  margin: 20px 40px;
+  padding: 20px;
+  box-shadow: 0px 22px 24px 0px rgba(46, 51, 51, 0.07);
+}
+.fav-cc {
+  display: flex;
+}
+.fav-title {
+  margin-bottom: 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* CHARACTER -> COMICS  /  FAVORITE */
+
+.char {
+  margin-top: 60px;
+}
+.character-container, .fav-cc {
+  margin-bottom: 50px;
+}
+.com4char-c {
+  background: white;
+  width: 70%;
+  display: flex;
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0px 22px 24px 0px rgba(46, 51, 51, 0.07);
+}
+.title-description-com4char, .infos-fav {
+  margin-top: 10px;
+}
+.title-description-com4char div:first-child, .infos-fav div:first-child {
+  color: #ED161E;
+  font-size: 15px;
+}
+.title-description-com4char div:last-child, .infos-fav div:last-child {
+  font-size: 12px;
+  margin-top: 20px;
+  text-justify: justify;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 11px;
+}
+.img-com4char, .img-fav {
+  margin-right: 20px;
+  width: 130px;
+  height: 160px;
+  object-fit: fill;
+  border: 1px solid #ED161E;
+}
+
+/* LOGIN  /  SIGNUP */
+
+.form-container {
+  background: white;
+  margin: 50px auto;
+  padding: 50px 100px;
+  box-shadow: 0px 22px 24px 0px rgba(46, 51, 51, 0.07);
+  width: 400px;
+}
+.title {
+  border-bottom: 2px solid #ED161E;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+form p {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+form div p:first-child {
+  margin-top: 25px;
+}
+form input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 45px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #d9e0eb;
+  margin-bottom: 20px;
+  padding-left: 15px;
+}
+form input[type="submit"] {
+  background-color: #ED161E;
+  color: white;
+  margin-bottom: 30px;
+  cursor: pointer;
+  width: 200px;
+}
+.no-account {
+  font-size: 11px;
+  color: black;
+}
+.container-err-msg {
+  position: relative;
+  height: 10px;
+  display: flex;
+}
+.err-msg {
+  color: #ED161E;
+  font-size: 10px;
+  position: absolute;
+  bottom: 10px;
+} 
+
+/* PAGINATION */
+
+.pagination {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pagination-button {
+  width: 25px;
+  height: 25px;
+  border: none;
+  outline: none;
+  color: black;
+  font-size: 15px;
+  background: #fafafa;
+  cursor: pointer;
+  margin: 4px;
+  border-radius: 5px;
+  font-size: 10px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.pagination-button:hover {
+  background: #ED161E;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
