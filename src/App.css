@@ -105,11 +105,16 @@ ul {
   position: absolute;
   margin: 10px 0 0 155px;
   font-size: 20px;
-  color: rgba(0, 0, 0, 0.6);
 }
 .star-icon:hover {
   color: #ED161E;
   cursor: pointer;
+}
+.red {
+  color: #ED161E;
+}
+.black {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /* CHARACTER CARD  /  COMIC CARD */

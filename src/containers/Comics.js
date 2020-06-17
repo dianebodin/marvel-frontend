@@ -13,6 +13,7 @@ const Comics = () => {
 
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [favCom, setFavCom] = useState([]);
 
   const [offset, setOffset] = useState(0);
   const [inputSearch, setInputSearch] = useState("");
@@ -36,6 +37,17 @@ const Comics = () => {
   }, [offset, inputSearch]);
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_PATH_BACKEND}/fav_comics/by_id`, { headers: { Authorization: "Bearer " + token }});
+        setFavCom(response.data);
+      } catch (error) { console.log(error.message); }
+    };
+    fetchData();
+  }, [token, favCom]);
+
+
   const clickPage = (nb) => {
     setOffset(nb*100-100);
   }
@@ -57,16 +69,14 @@ const Comics = () => {
     <>
       {isLoading ? (<div className="loading"><ReactLoading type="bubbles" color="red" /></div>)
       : (
-
         <>
-
         <Search setInputSearch={setInputSearch} />
 
         {data.results.map((item, i) => {
           return (
             <div className="card-c" key={i}>
               {token ? (
-                <FontAwesomeIcon className="star-icon" icon="star" onClick={() => handleFavorite(item)} />
+                <FontAwesomeIcon className={favCom.indexOf(JSON.stringify(item.id)) !== -1 ? "star-icon red" : "star-icon black"} icon="star" onClick={() => handleFavorite(item)} />
               ) : null}
               <ComicCard data={item} />
             </div>

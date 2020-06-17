@@ -14,6 +14,7 @@ const Characters = () => {
 
   const [data, setData] = useState([]); //tableau de données
   const [isLoading, setIsLoading] = useState(true);
+  const [favChar, setFavChar] = useState([]);
   
   //paramètres query
   const [offset, setOffset] = useState(0); 
@@ -39,6 +40,17 @@ const Characters = () => {
     };
     fetchData();
   }, [offset, inputSearch]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_PATH_BACKEND}/fav_characters/by_id`, { headers: { Authorization: "Bearer " + token }});
+        setFavChar(response.data);
+      } catch (error) { console.log(error.message); }
+    };
+    fetchData();
+  }, [token, favChar]);
 
 
   const clickPage = (nb) => {
@@ -70,7 +82,7 @@ const Characters = () => {
 
               <div className="card-c" key={i}>
                 {token ? (
-                  <FontAwesomeIcon className="star-icon" icon="star" onClick={() => handleFavorite(item)} />
+                  <FontAwesomeIcon icon="star" className={favChar.indexOf(JSON.stringify(item.id)) !== -1 ? "star-icon red" : "star-icon black"} onClick={() => handleFavorite(item)} />
                 ) : null}
                 <Link to={`/character/${item.id}`} className="no-link">
                   <CharacterCard key={i} data={item} />
