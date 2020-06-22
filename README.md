@@ -10,5 +10,6 @@ yarn
 yarn start
 ```
      
-## Demo
+## Website
 https://marvel-dianebodin.netlify.app
+Loading pages can take time as it depends on the Marvel API.

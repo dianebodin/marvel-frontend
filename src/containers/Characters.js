@@ -79,18 +79,14 @@ const Characters = () => {
 
           {data.results.map((item, i) => {
             return (
-              <>
+              <div className="card-c" key={i}>
                 {token ? (
-                  <div className="card-c" key={i}>
-                    <FontAwesomeIcon icon="star" className={favChar.indexOf(JSON.stringify(item.id)) !== -1 ? "star-icon red" : "star-icon black"} onClick={() => handleFavorite(item)} />
-                  </div>
+                  <FontAwesomeIcon icon="star" className={favChar.indexOf(JSON.stringify(item.id)) !== -1 ? "star-icon red" : "star-icon black"} onClick={() => handleFavorite(item)} />
                 ) : null}
-                <Link to={`/character/${item.id}`} className="no-link">
-                  <div className="card-c" key={i}>
+                <Link to={`/character/${item.id}`} className="no-link"> 
                     <CharacterCard key={i} data={item} />
-                  </div>
                 </Link>
-              </>
+              </div>
             );
           })}
         </>
