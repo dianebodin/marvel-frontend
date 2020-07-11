@@ -12,7 +12,7 @@ yarn start
      
 ## Website
 https://marvel-dianebodin.netlify.app
-<p>Loading pages can take time as it depends on the Marvel API.</p>
+<p>Pages loading can take time as it depends on the Marvel API.</p>
 
 ## Demo
 
