@@ -10,7 +10,7 @@ yarn
 yarn start
 ```
      
-## Website
+## Webapp
 https://marvel-dianebodin.netlify.app
 <p>Pages loading can take time as it depends on the Marvel API.</p>
 
