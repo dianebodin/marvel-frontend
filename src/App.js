@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import Header from './components/Header';
 import Signup from './containers/Signup';
@@ -8,12 +11,8 @@ import Characters from './containers/Characters';
 import Character from './containers/Character';
 import Comics from './containers/Comics';
 import Favorites from './containers/Favorites';
-import Cookies from 'js-cookie';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 library.add(faSearch, faStar); 
-
 
 const App = () => {
 
@@ -28,38 +27,30 @@ const App = () => {
   };
 
   return (
-    <>
-      <Router>
-        <Header token={token} setToken={setToken} userCookie={userCookie} />
-        <Switch>
-
-          <Route path="/signup">
-            <Signup fetchCookies={fetchCookies} />
-          </Route>
-          
-          <Route path="/login">
-            <Login fetchCookies={fetchCookies} />
-          </Route>
-
-          <Route path="/comics">
-            <Comics />
-          </Route>
-
-          <Route path="/favorites">
-            <Favorites />
-          </Route>
-
-          <Route path="/character/:id">
-            <Character />
-          </Route>
-
-          <Route path="/">
-            <Characters />
-          </Route>
-        </Switch>
-      </Router>
-    </>
+    <Router>
+      <Header token={token} setToken={setToken} userCookie={userCookie} />
+      <Switch>
+        <Route path="/signup">
+          <Signup fetchCookies={fetchCookies} />
+        </Route>
+        <Route path="/login">
+          <Login fetchCookies={fetchCookies} />
+        </Route>
+        <Route path="/comics">
+          <Comics />
+        </Route>
+        <Route path="/favorites">
+          <Favorites />
+        </Route>
+        <Route path="/character/:id">
+          <Character />
+        </Route>
+        <Route path="/">
+          <Characters />
+        </Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

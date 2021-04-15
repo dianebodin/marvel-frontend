@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ComicCard from '../components/ComicCard';
-import Pagination from '../components/Pagination';
-import Search from '../components/Search';
-import '../App.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from 'js-cookie';
 import ReactLoading from "react-loading";
-
+import '../App.css';
+import ComicCard from '../components/ComicCard';
+import Pagination from '../components/Pagination';
+import Search from '../components/Search';
 
 const Comics = () => {
 
@@ -19,7 +18,6 @@ const Comics = () => {
   const [inputSearch, setInputSearch] = useState("");
 
   const token = Cookies.get("token");
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +34,6 @@ const Comics = () => {
     fetchData();
   }, [offset, inputSearch]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,11 +44,9 @@ const Comics = () => {
     fetchData();
   }, [token, favCom]);
 
-
   const clickPage = (nb) => {
     setOffset(nb*100-100);
-  }
-
+  };
 
   const handleFavorite = async (item) => {
     try {
@@ -62,32 +57,35 @@ const Comics = () => {
       formData.append("img", item.thumbnail.path+"."+item.thumbnail.extension);
       await axios.put(`${process.env.REACT_APP_PATH_BACKEND}/favorite/comics`, formData, { headers: { Authorization: "Bearer " + token }});
     } catch (error) { console.log(error.message); }
-  }
-
+  };
 
   return (
     <>
       {isLoading ? (<div className="loading"><ReactLoading type="bubbles" color="red" /></div>)
-      : (
-        <>
-        <Search setInputSearch={setInputSearch} />
+        : (
+          <>
+            <Search setInputSearch={setInputSearch} />
 
-        {data.results.map((item, i) => {
-          return (
-            <div className="card-c" key={i}>
-              {token ? (
-                <FontAwesomeIcon className={favCom.indexOf(JSON.stringify(item.id)) !== -1 ? "star-icon red" : "star-icon black"} icon="star" onClick={() => handleFavorite(item)} />
-              ) : null}
-              <ComicCard data={item} />
-            </div>
-            );
-          })}
-        </>
-      )}
-
+            {data.results.map((item, i) => (
+              <div className="card-c" key={i}>
+                {token ?
+                  (
+                    <FontAwesomeIcon 
+                      className={favCom.indexOf(JSON.stringify(item.id)) !== -1 ? "star-icon red" : "star-icon black"} 
+                      icon="star" 
+                      onClick={() => handleFavorite(item)} 
+                    />
+                  ) : null
+                }
+                <ComicCard data={item} />
+              </div>
+            ))}
+          </>
+        )
+      }
       <Pagination total={data.total} clickPage={clickPage} />
     </>
   );
-}
+};
 
 export default Comics;

@@ -4,7 +4,6 @@ import axios from 'axios';
 import ReactLoading from "react-loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const Favorites = () => {
 
   const [data1, setData1] = useState([]); //data characters
@@ -26,7 +25,6 @@ const Favorites = () => {
     fetchData();
   }, [token]);
 
-
   const handleFavoriteChar = async (char) => {
     try {
       const formData = new FormData();
@@ -37,7 +35,7 @@ const Favorites = () => {
       const res = await axios.put(`${process.env.REACT_APP_PATH_BACKEND}/favorite/characters`, formData, { headers: { Authorization: "Bearer " + token }});
       setData1(res.data); //la réponse de la requête renvoie le nouveau tableau
     } catch (error) { console.log(error.message); }
-  }
+  };
 
   const handleFavoriteCom = async (com) => {
     try {
@@ -49,51 +47,49 @@ const Favorites = () => {
       const res = await axios.put(`${process.env.REACT_APP_PATH_BACKEND}/favorite/comics`, formData, { headers: { Authorization: "Bearer " + token }});
       setData2(res.data); //la réponse de la requête renvoie le nouveau tableau
     } catch (error) { console.log(error.message); }
-  }
-
+  };
 
   return (
     <>
-    {isLoading ? (<div className="loading"><ReactLoading type="bubbles" color="red" /></div>) 
-      : (
-        <div className="fav-container">
-        
-          <div className="fav-char">
-            <div className="fav-title">CHARACTERS</div>
-            {data1.map((char, i) => {
-              return (
-                <div className="fav-cc" key={i}>
-                  <FontAwesomeIcon className="star-icon-fav" icon="star" onClick={() => handleFavoriteChar(char)} />
-                  <div><img src={char.img} alt={char.name} className="img-fav" /></div>
-                  <div className="infos-fav">
-                    <div>{char.name}</div>
-                    {char.description ? (<div>{char.description}</div>) : (<div>No description.</div>)}
+      {isLoading ? (<div className="loading"><ReactLoading type="bubbles" color="red" /></div>)
+        : (
+          <div className="fav-container">
+            <div className="fav-char">
+              <div className="fav-title">CHARACTERS</div>
+              {data1.map((char, i) => {
+                return (
+                  <div className="fav-cc" key={i}>
+                    <FontAwesomeIcon className="star-icon-fav" icon="star" onClick={() => handleFavoriteChar(char)} />
+                    <div><img src={char.img} alt={char.name} className="img-fav" /></div>
+                    <div className="infos-fav">
+                      <div>{char.name}</div>
+                      {char.description ? (<div>{char.description}</div>) : (<div>No description.</div>)}
+                    </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
 
-          <div className="fav-com">
-          <div className="fav-title">COMICS</div>
-            {data2.map((com, i) => {
-              return (
-                <div className="fav-cc" key={i}>
-                  <FontAwesomeIcon className="star-icon-fav" icon="star" onClick={() => handleFavoriteCom(com)} />
-                  <div><img src={com.img} alt={com.title} className="img-fav" /></div>
-                  <div className="infos-fav">
-                    <div>{com.title}</div>
-                    {com.description && com.description !== "null" ? (<div>{com.description}</div>) : (<div>No description.</div>)}
+            <div className="fav-com">
+            <div className="fav-title">COMICS</div>
+              {data2.map((com, i) => {
+                return (
+                  <div className="fav-cc" key={i}>
+                    <FontAwesomeIcon className="star-icon-fav" icon="star" onClick={() => handleFavoriteCom(com)} />
+                    <div><img src={com.img} alt={com.title} className="img-fav" /></div>
+                    <div className="infos-fav">
+                      <div>{com.title}</div>
+                      {com.description && com.description !== "null" ? (<div>{com.description}</div>) : (<div>No description.</div>)}
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </>
   );
-
-}
+};
 
 export default Favorites;

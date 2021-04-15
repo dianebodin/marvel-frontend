@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import '../App.css';
 
-
 const Login = ({ fetchCookies }) => {
 
   const [username, setUsername] = useState("");
@@ -37,7 +36,7 @@ const Login = ({ fetchCookies }) => {
           else if (error.response.data.error === "Wrong password") setError(3);
         } 
       }
-  }
+  };
 
   return (
     <div className="form-container">
@@ -62,6 +61,6 @@ const Login = ({ fetchCookies }) => {
       </form>
     </div>
   );
-}
+};
 
 export default Login;

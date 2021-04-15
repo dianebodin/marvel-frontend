@@ -2,10 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../App.css';
 
-
 const Search = ({ setInputSearch }) => { 
   
-  const handleInputSearchChange = e => { setInputSearch(e.target.value); };
+  const handleInputSearchChange = e => setInputSearch(e.target.value);
 
   return (
     <div className="search-bar">
@@ -13,6 +12,6 @@ const Search = ({ setInputSearch }) => {
       <FontAwesomeIcon className="search-icon" icon="search" />
     </div>
   );
-}
+};
 
 export default Search;

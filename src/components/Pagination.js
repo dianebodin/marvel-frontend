@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Pagination = ({ total, clickPage }) => {
 
   const nb_pages = Math.ceil(total / 100);
@@ -9,7 +8,7 @@ const Pagination = ({ total, clickPage }) => {
     const arr = [];
     for (let i = 1; i <= nb_pages; i++) arr.push(i);
     return arr;
-  }
+  };
 
   return (
     <div className="pagination">
@@ -22,6 +21,6 @@ const Pagination = ({ total, clickPage }) => {
       })}
     </div>
   );
-}
+};
 
 export default Pagination;

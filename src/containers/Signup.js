@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import '../App.css';
 
-
 const Signup = ({ fetchCookies }) => {
 
   const [username, setUsername] = useState("");
@@ -39,11 +38,10 @@ const Signup = ({ fetchCookies }) => {
         if (error.response.status === 400) setError(4);
       } 
     }
-  }
+  };
 
   return (
     <div className="form-container">
-
       <div className="title">Sign up</div>
       <form onSubmit={handleSubmitSignup}>
         <p>Username</p>
@@ -64,6 +62,6 @@ const Signup = ({ fetchCookies }) => {
       </form>
     </div>
   );
-}
+};
 
 export default Signup;
